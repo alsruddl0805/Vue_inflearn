@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+       <button type="button" @click="getData">get user</button>
+       <ul>
+        <li v-for="(user, idx) in users" :key="idx">{{ user.username }}</li>
+       </ul>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+
+    <script>
+        let vm = new Vue({
+            el: '#app',
+            data: {
+                users: [],
+            },
+            methods: {
+                getData: function() {
+                    // 호출 전 this와 비동기 처리 함수 내부 this가 다르기 때문에 선언해놓은 this로 가져다쓰기
+                    let that = this;
+                    axios.get('https://jsonplaceholder.typicode.com/users')
+                    .then(function(res) {
+                        console.log(res);
+                        that.users = res.data;
+                    })
+                    .catch(function(err) {
+                        console.log(err);
+                    });
+                }
+            },
+        });
+    </script>
+</body>
+
+</html>
