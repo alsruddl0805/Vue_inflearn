@@ -18,3 +18,7 @@ export default {
   name: 'app',
 }
 </script>
+
+<style>
+body {font-family: 'Gowun Dodum', sans-serif;}
+</style>
