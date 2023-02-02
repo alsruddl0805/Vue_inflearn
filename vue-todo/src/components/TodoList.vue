@@ -1,9 +1,10 @@
 <template>
     <div>
       <ul>
-        <li v-for="(item, idx) in todoItems" :key="item" class="shadow">
-          {{ item }}
-          <span class="removeBtn" @click="removeTodo(item, idx)">
+        <li v-for="(todoItem, idx) in todoItems" :key="idx" class="shadow">
+          <i class="checkBtn fa-solid fa-check" @click="toggleComplete(todoItem)" :class="{checkBtnCompleted : todoItem.completed}"></i>
+          <span :class="{textCompleted : todoItem.completed}">{{ todoItem.item }}</span>
+          <span class="removeBtn" @click="removeTodo(todoItem, idx)">
             <i class="fa-solid fa-trash"></i>
           </span>
         </li>
@@ -22,14 +23,21 @@ export default {
     if (localStorage.length > 0) {
       let list = localStorage.length;
       for (let i=0; i<list; i++) {
-        if (localStorage.key(i) !== 'loglevel:webpack-dev-server') this.todoItems.push(localStorage.key(i));
+        if (localStorage.key(i) !== 'loglevel:webpack-dev-server') {
+          this.todoItems.push(JSON.parse(localStorage.getItem(localStorage.key(i))));
+        }
       }
     }
   },
   methods: {
-    removeTodo: function(item, idx) {
-      localStorage.removeItem(item);
+    removeTodo: function(todoItem, idx) {
+      localStorage.removeItem(todoItem);
       this.todoItems.splice(idx, 1);
+    },
+    toggleComplete: function(todoItem) {
+      todoItem.completed = !todoItem.completed;
+      localStorage.removeItem(todoItem.item);
+      localStorage.setItem(todoItem.item, JSON.stringify(todoItem))
     },
   },
 }
@@ -39,7 +47,7 @@ export default {
 ul {margin-top: 0; padding-left: 0; list-style-type: none; text-align: left;}
 li {display: flex; height: 50px; min-height: 50px; line-height: 50px; margin: 0.5rem 0; padding: 0 0.9rem; background-color: #fff; border-radius: 5px;}
 .removeBtn {margin-left: auto; color: #de4343; cursor: pointer;}
-.chekBtn {margin-right: 5px; line-height: 45px; color: #62acde;}
+.checkBtn {margin-right: 5px; line-height: 45px; color: #62acde;}
 .checkBtnCompleted {color: #b3adad;}
 .textCompleted {text-decoration: line-through; color: #b3adad;}
 </style>
