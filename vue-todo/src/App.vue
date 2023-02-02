@@ -20,5 +20,9 @@ export default {
 </script>
 
 <style>
-body {font-family: 'Gowun Dodum', sans-serif;}
+body {font-family: 'Gowun Dodum', sans-serif; background-color: #f6f6f6; text-align: center;}
+#app {min-width: 300px;}
+input {width: 200px; border-style: groove;}
+button {border-style: groove;}
+.shadow {box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.03);}
 </style>
