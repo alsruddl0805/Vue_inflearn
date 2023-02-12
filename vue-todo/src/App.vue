@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <TodoHeader />
-    <TodoInput />
-    <TodoList />
+    <TodoInput @addTodoItem="addOneItem"/>
+    <TodoList :todoItems="todoItems" />
     <TodoFooter />
   </div>
 </template>
@@ -14,8 +14,31 @@ import TodoList from './components/TodoList.vue'
 import TodoFooter from './components/TodoFooter.vue'
 
 export default {
-  components: { TodoHeader, TodoInput, TodoList, TodoFooter },
   name: 'app',
+  data: function() {
+    return {
+      todoItems: [],
+    }
+  },
+  // 리팩토링 : 데이터를 한 곳에서 관리
+  created: function () {
+    if (localStorage.length > 0) {
+      let list = localStorage.length;
+      for (let i = 0; i < list; i++) {
+        if (localStorage.key(i) !== 'loglevel:webpack-dev-server') {
+          this.todoItems.push(JSON.parse(localStorage.getItem(localStorage.key(i))));
+        }
+      }
+    }
+  },
+  methods: {
+    addOneItem: function (todoItem) {
+      let obj = { completed: false, item: todoItem };
+      localStorage.setItem(todoItem, JSON.stringify(obj));
+      this.todoItems.push(obj);
+    }
+  },
+  components: { TodoHeader, TodoInput, TodoList, TodoFooter },
 }
 </script>
 
