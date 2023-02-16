@@ -4,7 +4,7 @@
     <span class="addContainer" @click="addTodo">
       <i class="fa-solid fa-plus addBtn"></i>
     </span>
-  
+
     <Modal v-if="showModal" @close="showModal = false">
       <!--
         you can use custom content here to overwrite
@@ -31,7 +31,7 @@ export default {
     }
   },
   methods: {
-    addTodo: function() {
+    addTodo() {
       if (this.newTodoItem) {
         this.$emit('addTodoItem', this.newTodoItem)
         this.clearInput();
@@ -39,7 +39,7 @@ export default {
         this.showModal = !this.showModal;
       }
     },
-    clearInput: function() {
+    clearInput() {
       this.newTodoItem = '';
     },
   },

@@ -2,8 +2,8 @@
   <div id="app">
     <TodoHeader />
     <TodoInput @addTodoItem="addOneItem" />
-    <TodoList :todoItems="todoItems" 
-    @removeItem="removeOneItem" 
+    <TodoList :todoItems="todoItems"
+    @removeItem="removeOneItem"
     @toggleItem="toggleOneItem" />
     <TodoFooter @clearTodo="clearAllItems"/>
   </div>
@@ -17,14 +17,14 @@ import TodoFooter from './components/TodoFooter.vue'
 
 export default {
   name: 'app',
-  data: function() {
+  data() {
     return {
       todoItems: [],
     }
   },
   // 리팩토링 : 데이터를 한 곳에서 관리
-  created: function () {
-    if (localStorage.length > 0) {
+  created() {
+    if (localStorage.length > 0)  {
       let list = localStorage.length;
       for (let i = 0; i < list; i++) {
         if (localStorage.key(i) !== 'loglevel:webpack-dev-server') {
@@ -34,21 +34,21 @@ export default {
     }
   },
   methods: {
-    addOneItem: function (todoItem) {
-      let obj = { completed: false, item: todoItem };
+    addOneItem(todoItem) {
+      const obj = { completed: false, item: todoItem };
       localStorage.setItem(todoItem, JSON.stringify(obj));
       this.todoItems.push(obj);
     },
-    removeOneItem: function (todoItem, idx) {
+    removeOneItem(todoItem, idx) {
       localStorage.removeItem(todoItem.item);
       this.todoItems.splice(idx, 1);
     },
-    toggleOneItem: function (todoItem, idx) {
+    toggleOneItem(todoItem, idx) {
       this.todoItems[idx].completed = !this.todoItems[idx].completed;
       localStorage.removeItem(todoItem.item);
       localStorage.setItem(todoItem.item, JSON.stringify(todoItem))
     },
-    clearAllItems: function () {
+    clearAllItems() {
       localStorage.clear();
       this.todoItems = [];
     },
