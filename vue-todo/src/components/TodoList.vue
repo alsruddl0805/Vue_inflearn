@@ -1,7 +1,7 @@
 <template>
     <div>
       <transition-group name="list" tag="ul">
-        <li v-for="(todoItem, idx) in todoItems" :key="idx" class="shadow">
+        <li v-for="(todoItem, idx) in this.$store.state.todoItems" :key="idx" class="shadow">
           <i class="checkBtn fa-solid fa-check" @click="toggleComplete(todoItem, idx)" :class="{checkBtnCompleted : todoItem.completed}"></i>
           <span :class="{textCompleted : todoItem.completed}">{{ todoItem.item }}</span>
           <span class="removeBtn" @click="removeTodo(todoItem, idx)">
@@ -17,10 +17,10 @@ export default {
   props: ['todoItems'],
   methods: {
     removeTodo(todoItem, idx) {
-      this.$emit('removeItem', todoItem, idx);
+      this.$store.commit('removeOneItem', {todoItem, idx});
     },
     toggleComplete(todoItem, idx) {
-      this.$emit('toggleItem', todoItem, idx);
+      this.$store.commit('toggleOneItem', {todoItem, idx});
     },
   },
 }
