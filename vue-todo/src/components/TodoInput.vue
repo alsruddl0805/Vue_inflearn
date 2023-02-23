@@ -22,7 +22,6 @@
 
 <script>
 import Modal from './common/Modal.vue';
-
 export default {
   data() {
     return {
