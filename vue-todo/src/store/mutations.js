@@ -1,23 +1,23 @@
-const addOneItem = (state, todoItem) => {
-  const obj = { completed: false, item: todoItem };
+const addOneItem = function(state, todoItem) {
+  const obj = {completed: false, item: todoItem};
   localStorage.setItem(todoItem, JSON.stringify(obj));
   state.todoItems.push(obj);
-}
+};
 
-const removeOneItem = (state, payload) => {
+const removeOneItem = function(state, payload) {
+  state.todoItems.splice(payload.index, 1);
   localStorage.removeItem(payload.todoItem.item);
-  state.todoItems.splice(payload.idx, 1);
-}
+};
 
-const toggleOneItem = (state, payload) => {
-  state.todoItems[payload.idx].completed = !state.todoItems[payload.idx].completed;
+const toggleOneItem = function(state, payload) {
+  state.todoItems[payload.index].completed = !state.todoItems[payload.index].completed;
   localStorage.removeItem(payload.todoItem.item);
-  localStorage.setItem(payload.todoItem.item, JSON.stringify(payload.todoItem))
-}
+  localStorage.setItem(payload.todoItem.item, JSON.stringify(payload.todoItem));
+};
 
-const clearAllItems = (state) => {
-  localStorage.clear();
+const clearAllItems = function(state) {
   state.todoItems = [];
-}
+  localStorage.clear();
+};
 
-export { addOneItem, removeOneItem, toggleOneItem, clearAllItems }
+export { addOneItem, removeOneItem, toggleOneItem, clearAllItems };

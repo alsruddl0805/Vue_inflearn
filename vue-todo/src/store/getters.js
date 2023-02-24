@@ -1,3 +1,3 @@
-export const storedTodoItem = (state) => {
+export const getTodoItems = function(state) {
   return state.todoItems;
 }
