@@ -1,10 +1,25 @@
 <template>
-  <div>news</div>
+  <div>
+    <ul>
+      <li v-for="item in news" :key="item.id">{{ item.title }}</li>
+    </ul>
+  </div>
 </template>
 
 <script>
-export default {
+import axios from 'axios';
 
+export default {
+  data() {
+    return {
+      news: [],
+    }
+  },
+  created() {
+    axios.get('https://api.hnpwa.com/v0/news/1.json')
+    .then((res) => this.news = res.data)
+    .catch()
+  },
 }
 </script>
 
