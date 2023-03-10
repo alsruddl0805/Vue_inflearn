@@ -5,8 +5,10 @@ import JobsView from '@/views/JobsView'
 
 const routes = [
     {
-        // path : url
-        // component: url 주소로 이동했을 때 표시될 컴포넌트 
+        path: '/',
+        redirect: '/news',
+    },
+    {
         path: '/news',
         component: NewsView,
     },
