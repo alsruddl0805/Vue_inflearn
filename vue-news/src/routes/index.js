@@ -1,9 +1,12 @@
-import { createWebHistory, createRouter } from 'vue-router';
+import Vue from 'vue'
+import VueRouter from 'vue-router'
 import NewsView from '@/views/NewsView'
 import AskView from '@/views/AskView'
 import JobsView from '@/views/JobsView'
 import ItemView from '@/views/ItemView'
 import UserView from '@/views/UserView'
+
+Vue.use(VueRouter)
 
 const routes = [
     {
@@ -32,7 +35,7 @@ const routes = [
     },
 ]
 
-export const router = createRouter({
-    history: createWebHistory(),
+export default new VueRouter({
+    mode: 'history',
     routes,
 })

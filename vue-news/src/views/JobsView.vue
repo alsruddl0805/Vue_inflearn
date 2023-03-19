@@ -7,8 +7,6 @@
 </template>
 
 <script>
-import { fetchJobsList } from '@/api';
-
 export default {
     data() {
         return {
@@ -16,9 +14,8 @@ export default {
         }
     },
     created() {
-        fetchJobsList()
-        .then((res) => { this.jobsList = res.data })
-        .catch()
+      this.$store.dispatch('FETCH_JOBS');
+      this.jobsList = this.$store.state.jobs;
     }
 }
 </script>
