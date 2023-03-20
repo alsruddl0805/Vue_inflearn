@@ -9,17 +9,18 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
   name: "UserView",
-  data() {
-    return {
-      userInfo: '',
-    }
+  computed: {
+    ...mapGetters({
+      userInfo: 'fetchedUserInfo',
+    })
   },
   created() {
     const userId = this.$route.params.id;
-    this.$store.dispatch('FETCH_USER_INFO', userId)
-    this.userInfo = this.$store.state.userInfo;
+    this.$store.dispatch('FETCH_USER_INFO', userId);
   },
 }
 </script>

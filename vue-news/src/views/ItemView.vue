@@ -13,11 +13,6 @@ export default {
   created() {
     const askId = this.$route.params.id;
     this.$store.dispatch('FETCH_ASK_INFO', askId);
-
   },
 }
 </script>
-
-<style scoped>
-
-</style>

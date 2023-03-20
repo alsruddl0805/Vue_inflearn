@@ -13,19 +13,16 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
-  data() {
-    return {
-      newsList: [],
-    }
+  computed: {
+    ...mapGetters({
+      newsList: 'fetchedNewsList',
+    })
   },
   created() {
-    this.$store.dispatch('FETCH_NEWS')
-    this.newsList = this.$store.state.news;
+    this.$store.dispatch('FETCH_NEWS');
   },
 }
 </script>
-
-<style>
-
-</style>
