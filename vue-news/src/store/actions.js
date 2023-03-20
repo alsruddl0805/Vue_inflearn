@@ -1,4 +1,4 @@
-import { fetchNewsList, fetchAskList, fetchJobsList } from '@/api';
+import {fetchNewsList, fetchAskList, fetchJobsList, fetchUserInfo} from '@/api';
 
 export default {
     FETCH_NEWS({ commit }) {
@@ -15,5 +15,10 @@ export default {
         fetchJobsList()
             .then(({ data }) => { commit('SET_JOBS', data) })
             .catch()
-    }
+    },
+    FETCH_USER_INFO({ commit }, userId) {
+      fetchUserInfo(userId)
+      .then(({ data }) => { commit('SET_USER_INFO', data) })
+      .catch()
+    },
 }

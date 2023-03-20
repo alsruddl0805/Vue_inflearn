@@ -15,6 +15,7 @@ export default new Vuex.Store({
         news: [],
         ask: [],
         jobs: [],
+        userInfo: [],
     },
     getters: {
         fetchedAsk(state) {

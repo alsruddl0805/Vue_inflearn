@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+
+// views
 import NewsView from '@/views/NewsView'
 import AskView from '@/views/AskView'
 import JobsView from '@/views/JobsView'
@@ -30,7 +32,7 @@ const routes = [
         component: ItemView,
     },
     {
-        path: '/user',
+        path: '/user/:id',
         component: UserView,
     },
 ]
