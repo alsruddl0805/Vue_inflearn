@@ -2,7 +2,7 @@
       <div>
         <ul>
           <li v-for="item in fetchedAsk" :key="item.id">
-            <a :href="item.url">{{ item.title }}</a> <small>{{ item.time_ago }}</small>
+            <router-link :to="`/item/${item.id}`">{{ item.title }}</router-link> <small>{{ item.time_ago }}</small>
           </li>
         </ul>
       </div>

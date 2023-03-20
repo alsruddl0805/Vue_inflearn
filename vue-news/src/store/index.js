@@ -16,10 +16,14 @@ export default new Vuex.Store({
         ask: [],
         jobs: [],
         userInfo: [],
+        askInfo: [],
     },
     getters: {
         fetchedAsk(state) {
             return state.ask;
+        },
+        fetchedAskInfo(state) {
+            return state.askInfo;
         }
     },
     mutations,

@@ -10,5 +10,8 @@ export default {
     },
     SET_USER_INFO(state, val) {
         state.userInfo = val;
+    },
+    SET_ASK_INFO(state, val) {
+        state.askInfo = val;
     }
 }

@@ -35,6 +35,10 @@ const routes = [
         path: '/user/:id',
         component: UserView,
     },
+    {
+        path: '/item/:id',
+        component: ItemView,
+    },
 ]
 
 export default new VueRouter({
