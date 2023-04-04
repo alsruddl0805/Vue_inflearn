@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <ToolBar></ToolBar>
-    <router-view></router-view>
+    <transition name="fade">
+      <router-view></router-view>
+    </transition>
   </div>
 </template>
 
@@ -27,5 +29,15 @@ a:hover {
 }
 a.router-link-active {
   text-decoration: underline;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>
