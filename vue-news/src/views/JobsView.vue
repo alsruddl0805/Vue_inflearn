@@ -1,5 +1,6 @@
 <template>
   <div>
+    <ListItem :itemList="jobsList"/>
     <ul class="news-list">
       <li v-for="item in jobsList" :key="item.id" class="post">
         <div class="points">{{ item.points }}</div>
@@ -19,8 +20,10 @@
 
 <script>
 import { mapGetters } from 'vuex';
+import ListItem from '@/components/ListItem';
 
 export default {
+  components: { ListItem },
   computed: {
     ...mapGetters({
       jobsList: 'fetchedJobs',
