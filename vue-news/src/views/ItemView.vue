@@ -1,15 +1,7 @@
 <template>
   <div class="home">
     <section class="header-container">
-      <div class="user-container">
-        <div>
-          <i class="fas fa-user-circle"></i>
-        </div>
-        <div class="user-description">
-          <router-link :to="`/user/${fetchedAskInfo.user}`">{{ fetchedAskInfo.user }}</router-link>
-          <div class="time">{{ fetchedAskInfo.time_ago }}</div>
-        </div>
-      </div>
+      <UserProfile :info="fetchedAskInfo"/>
     </section>
     <section>
       <div v-html="fetchedAskInfo.content" class="content"></div>
@@ -34,9 +26,11 @@
 
 <script>
 import { mapGetters } from 'vuex';
+import UserProfile from '@/components/UserProfile';
 
 export default {
   name: "ItemVue",
+  components: { UserProfile },
   computed: {
     ...mapGetters(['fetchedAskInfo'])
   },
