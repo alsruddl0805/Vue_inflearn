@@ -1,8 +1,14 @@
 <template>
       <div>
-        <ul>
-          <li v-for="item in fetchedAsk" :key="item.id">
-            <router-link :to="`/item/${item.id}`">{{ item.title }}</router-link> <small>{{ item.time_ago }}</small>
+        <ul class="news-list">
+          <li v-for="item in fetchedAsk" :key="item.id" class="post">
+            <div class="points">{{ item.points }}</div>
+            <div>
+              <p class="news-title">
+                <router-link :to="`/item/${item.id}`">{{ item.title }}</router-link>
+              </p>
+              <small class="link-text">{{ item.time_ago }}</small>
+            </div>
           </li>
         </ul>
       </div>
