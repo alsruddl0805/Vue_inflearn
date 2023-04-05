@@ -1,18 +1,18 @@
 <template>
-  <div>
-    <ul>
-      <li>name : {{ userInfo.id }}</li>
-      <li>karma : {{ userInfo.karma }}</li>
-      <li>created : {{ userInfo.created }}</li>
-    </ul>
-  </div>
+  <UserProfile :info="userInfo">
+    <template v-slot:username>{{ userInfo.id }}</template>
+    <template v-slot:time>{{ userInfo.created }}</template>
+    <template v-slot:karma>{{ userInfo.karma }}</template>
+  </UserProfile>
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
+import UserProfile from '@/components/UserProfile';
 
 export default {
   name: "UserView",
+  components: { UserProfile },
   computed: {
     ...mapGetters({
       userInfo: 'fetchedUserInfo',

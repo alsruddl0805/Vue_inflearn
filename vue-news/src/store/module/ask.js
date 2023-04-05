@@ -2,7 +2,7 @@ import { fetchAskInfo, fetchAskList } from "@/api";
 
 const state = {
   ask: [],
-  askInfo: [],
+  askInfo: {},
 };
 
 const mutations = {

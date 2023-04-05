@@ -1,7 +1,10 @@
 <template>
   <div class="home">
     <section class="header-container">
-      <UserProfile :info="fetchedAskInfo"/>
+      <UserProfile :info="fetchedAskInfo">
+        <template v-slot:username>{{ fetchedAskInfo.user }}</template>
+        <template v-slot:time>{{ fetchedAskInfo.time_ago }}</template>
+      </UserProfile>
     </section>
     <section>
       <div v-html="fetchedAskInfo.content" class="content"></div>
