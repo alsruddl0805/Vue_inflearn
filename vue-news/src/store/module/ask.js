@@ -1,4 +1,4 @@
-import { fetchAskInfo, fetchAskList } from "@/api";
+import {fetchAskInfo, fetchAskList} from "@/api";
 
 const state = {
   ask: [],

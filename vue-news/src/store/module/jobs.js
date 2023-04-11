@@ -1,4 +1,4 @@
-import { fetchJobsList } from "@/api";
+import {fetchJobsList} from "@/api";
 
 const state = {
   jobs: [],

@@ -1,7 +1,7 @@
 <template>
   <div>
     <ul class="news-list">
-      <li v-for="item in itemList" :key="item.id" class="post">
+      <li v-for="item in listItems" :key="item.id" class="post">
         <div class="points">{{ item.points || 0}}</div>
         <div>
           <p class="news-title">
@@ -22,8 +22,10 @@
 <script>
 export default {
   name: 'ListItem',
-  props: {
-    itemList: Array,
+  computed: {
+    listItems() {
+      return this.$store.state.list;
+    }
   }
 }
 </script>

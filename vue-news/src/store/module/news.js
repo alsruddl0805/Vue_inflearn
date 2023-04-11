@@ -1,4 +1,4 @@
-import { fetchNewsList, fetchUserInfo } from "@/api";
+import {fetchList, fetchNewsList, fetchUserInfo} from "@/api";
 
 const state = {
   news: [],
