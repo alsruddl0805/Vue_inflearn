@@ -9,7 +9,10 @@ export default function createListView(name) {
     created() {
       bus.$emit('start:spinner');
       this.$store.dispatch('FETCH_LIST', this.$route.path)
-      .then(() => bus.$emit('end:spinner'))
+      .then(() => {
+        console.log('HOC 호출')
+        bus.$emit('end:spinner')
+      })
       .catch((err) => console.log(err))
       // setTimeout(() => {
       // }, 3000);

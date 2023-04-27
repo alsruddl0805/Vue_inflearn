@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 // views
-// import NewsView from '@/views/NewsView'
+import NewsView from '@/views/NewsView'
 // import AskView from '@/views/AskView'
 // import JobsView from '@/views/JobsView'
 import ItemView from '@/views/ItemView'
@@ -18,8 +18,8 @@ const routes = [
     },
     {
         path: '/news',
-        // component: NewsView,
-        component: createListView('NewsView')
+        component: NewsView,
+        // component: createListView('NewsView')
     },
     {
         path: '/ask',
