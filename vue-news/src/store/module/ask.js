@@ -12,7 +12,7 @@ const mutations = {
 
 const actions = {
   FETCH_ASK_INFO({ commit }, askId) {
-    fetchAskInfo(askId)
+    return fetchAskInfo(askId)
     .then(({ data }) => { commit('SET_ASK_INFO', data) })
     .catch()
   },

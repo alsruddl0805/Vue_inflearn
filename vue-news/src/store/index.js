@@ -24,8 +24,11 @@ export default new Vuex.Store({
     },
     actions: {
         FETCH_LIST({ commit }, name) {
-            fetchList(name)
-            .then(({ data }) => { commit('SET_LIST', data) })
+            return fetchList(name)
+            .then((res) => {
+                commit('SET_LIST', res.data)
+                return res;
+            })
             .catch()
         },
     },

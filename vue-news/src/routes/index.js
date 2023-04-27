@@ -7,7 +7,9 @@ import NewsView from '@/views/NewsView'
 // import JobsView from '@/views/JobsView'
 import ItemView from '@/views/ItemView'
 import UserView from '@/views/UserView'
-import createListView from "@/views/CreateListView";
+import createListView from '@/views/CreateListView';
+import bus from '@/utils/bus';
+import store from '@/store';
 
 Vue.use(VueRouter)
 
@@ -20,6 +22,17 @@ const routes = [
         path: '/news',
         component: NewsView,
         // component: createListView('NewsView')
+        beforeEnter: function(to, from, next) {
+            console.log('to :', to)
+            bus.$emit('start:spinner');
+            store.dispatch('FETCH_LIST', to.path)
+            .then(() => {
+                console.log('router navigation 호출')
+                bus.$emit('end:spinner')
+                next();
+            })
+            .catch((err) => console.log(err));
+        }
     },
     {
         path: '/ask',
