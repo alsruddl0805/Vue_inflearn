@@ -3,11 +3,11 @@ import VueRouter from 'vue-router'
 
 // views
 import NewsView from '@/views/NewsView'
-// import AskView from '@/views/AskView'
-// import JobsView from '@/views/JobsView'
+import AskView from '@/views/AskView'
+import JobsView from '@/views/JobsView'
 import ItemView from '@/views/ItemView'
 import UserView from '@/views/UserView'
-import createListView from '@/views/CreateListView';
+// import createListView from '@/views/CreateListView';
 import bus from '@/utils/bus';
 import store from '@/store';
 
@@ -20,29 +20,21 @@ const routes = [
     },
     {
         path: '/news',
+        meta: { isListRequired: true },
         component: NewsView,
         // component: createListView('NewsView')
-        beforeEnter: function(to, from, next) {
-            console.log('to :', to)
-            bus.$emit('start:spinner');
-            store.dispatch('FETCH_LIST', to.path)
-            .then(() => {
-                console.log('router navigation 호출')
-                bus.$emit('end:spinner')
-                next();
-            })
-            .catch((err) => console.log(err));
-        }
     },
     {
         path: '/ask',
-        // component: AskView,
-        component: createListView('AskView')
+        meta: { isListRequired: true },
+        component: AskView,
+        // component: createListView('AskView')
     },
     {
         path: '/jobs',
-        // component: JobsView,
-        component: createListView('JobsView')
+        meta: { isListRequired: true },
+        component: JobsView,
+        // component: createListView('JobsView')
     },
     {
         path: '/item',
@@ -58,7 +50,21 @@ const routes = [
     },
 ]
 
-export default new VueRouter({
+const router = new VueRouter({
     mode: 'history',
     routes,
+});
+
+router.beforeEach((to, from, next) => {
+    if (to.meta.isListRequired) {
+        bus.$emit('start:spinner');
+        store.dispatch('FETCH_LIST', to.path)
+        .then(() => {
+            console.log('router navigation 호출', to.path)
+            next();
+        })
+        .catch((err) => console.log(err));
+    }
 })
+
+export default router;
