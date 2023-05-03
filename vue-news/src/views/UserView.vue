@@ -20,7 +20,7 @@ export default {
   },
   created() {
     const userId = this.$route.params.id;
-    this.$store.dispatch('FETCH_USER_INFO', userId);
+    this.$store.dispatch('FETCH_USER_INFO1', userId);
   },
 }
 </script>

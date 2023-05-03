@@ -22,16 +22,28 @@ function fetchJobsList() {
     return axios.get(`${config.baseUrl}/jobs/1.json`)
 }
 
-function fetchList(name) {
-    return axios.get(`${config.baseUrl}${name}/1.json`)
+async function fetchList(name) {
+    try {
+        return await axios.get(`${config.baseUrl}${name}/1.json`)
+    } catch(err) {
+        console.log('err')
+    }
 }
 
-function fetchUserInfo(userId) {
-    return axios.get(`${config.baseUrl}/user/${userId}.json`)
+async function fetchUserInfo(userId) {
+    try {
+        return await axios.get(`${config.baseUrl}/user/${userId}.json`)
+    } catch(err) {
+        console.log('err')
+    }
 }
 
-function fetchAskInfo(askId) {
-    return axios.get(`${config.baseUrl}/item/${askId}.json`)
+async function fetchAskInfo(askId) {
+    try {
+        return await axios.get(`${config.baseUrl}/item/${askId}.json`)
+    } catch(err) {
+        console.log('err')
+    }
 }
 
 export { fetchNewsList, fetchAskList, fetchJobsList, fetchUserInfo, fetchAskInfo, fetchList }

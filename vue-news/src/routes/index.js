@@ -58,12 +58,14 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
     if (to.meta.isListRequired) {
         bus.$emit('start:spinner');
-        store.dispatch('FETCH_LIST', to.path)
+        store.dispatch('FETCH_LIST1', to.path)
         .then(() => {
             console.log('router navigation 호출', to.path)
             next();
         })
         .catch((err) => console.log(err));
+    } else {
+        next();
     }
 })
 

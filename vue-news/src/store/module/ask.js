@@ -11,10 +11,17 @@ const mutations = {
 };
 
 const actions = {
+  // promise
   FETCH_ASK_INFO({ commit }, askId) {
     return fetchAskInfo(askId)
     .then(({ data }) => { commit('SET_ASK_INFO', data) })
     .catch()
+  },
+
+  // async
+  async FETCH_ASK_INFO1({ commit }, askId) {
+    const response = await fetchAskInfo(askId);
+    commit('SET_ASK_INFO', response.data);
   },
 };
 

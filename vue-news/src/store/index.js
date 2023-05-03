@@ -23,6 +23,7 @@ export default new Vuex.Store({
         },
     },
     actions: {
+        // promise
         FETCH_LIST({ commit }, name) {
             return fetchList(name)
             .then((res) => {
@@ -31,5 +32,14 @@ export default new Vuex.Store({
             })
             .catch()
         },
+
+        // async & await
+        async FETCH_LIST1({ commit }, name) {
+            const response = await fetchList(name);
+            commit('SET_LIST', response.data)
+            return response;
+        },
+
+        // 추후 FETCH_LIST1.then().catch(); 등의 구문으로 활용 가능
     },
 });
